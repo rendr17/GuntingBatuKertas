@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gunting Batu Kertas</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h3>Game Gunting Batu Kertas</h3>
+
+    <button id="gunting" value="gunting">Gunting</button>
+    <button id="batu" value="batu">Batu</button>
+    <button id="kertas" value="kertas">Kertas</button>
+    <p style="display: inline-block">vs <span id="bot">Bot</span></p>
+    <ul>
+      <li style="display: inline-block">Kamu :</li>
+      <li id="hasil" style="display: inline-block"></li>
+    </ul>
+
+    <script>
+      function main(bermain) {
+        const musuh = document.getElementById('bot');
+        const random = Math.floor(Math.random() * 3);
+
+        var bot = "";
+
+        if (random === 0) {
+          bot = "Gunting";
+        } else if (random === 1) {
+          bot = "Batu";
+        } else {
+          bot = "Kertas";
+        }
+
+        if (bermain === "gunting") {
+          if (bot === "kertas") {
+            hasil = "Menang";
+          } else if (bot === "batu") {
+            hasil = "Kalah";
+          } else {
+            hasil = "Seri";
+          }
+        } else if (bermain === "batu") {
+          if (bot === "gunting") {
+            hasil = "Menang";
+          } else if (bot === "kertas") {
+            hasil = "Kalah";
+          } else {
+            hasil = "Seri";
+          }
+        } else {
+          if (bot === "batu") {
+            hasil = "Menang";
+          } else if (bot === "gunting") {
+            hasil = "Kalah";
+          } else {
+            hasil = "Seri";
+          }
+        }
+        musuh.innerText = bot;
+        return hasil;
+      }
+
+      var pemenang = document.getElementById("hasil");
+
+      gunting.addEventListener("click", function () {
+        var hasil = main(gunting.value);
+        pemenang.innerText = hasil;
+      });
+
+      batu.addEventListener("click", function () {
+        var hasil = main(batu.value);
+        pemenang.innerText = hasil;
+      });
+
+      kertas.addEventListener("click", function () {
+        var hasil = main(kertas.value);
+        pemenang.innerText = hasil;
+      });
+    </script>
+  </body>
+</html>
